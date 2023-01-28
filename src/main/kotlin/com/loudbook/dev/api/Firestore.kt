@@ -22,6 +22,8 @@ class Firestore {
             .build()
         FirebaseApp.initializeApp(options)
         this.db = FirestoreClient.getFirestore()
+
+
     }
 
     fun putEffects(id: UUID, list: ArrayList<Effect>){

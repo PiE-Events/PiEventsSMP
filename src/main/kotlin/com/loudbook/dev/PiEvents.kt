@@ -3,6 +3,7 @@ package com.loudbook.dev
 import com.loudbook.dev.api.Firestore
 import com.loudbook.dev.commands.*
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -12,6 +13,8 @@ class PiEvents : JavaPlugin() {
     override fun onEnable() {
         val firestore = Firestore()
         firestore.connect()
+        this.server.consoleSender.sendMessage(ChatColor.GREEN.toString() + "Connected to Firestore!")
+        println(" ---------------------------------------- ")
         val playerManager = PlayerManager(firestore)
         UpdatePotionTask(playerManager, plugin)
 
@@ -28,5 +31,19 @@ class PiEvents : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(DeathHandler(playerManager, this), this)
         Bukkit.getPluginManager().registerEvents(JoinHandler(playerManager, firestore), this)
         Bukkit.getPluginManager().registerEvents(LeaveHandler(playerManager), this)
+
+        println("""
+            
+  _____ _ ______   ______               _       
+ |  __ (_)  ____| |  ____|             | |      
+ | |__) || |__    | |____   _____ _ __ | |_ ___ 
+ |  ___/ |  __|   |  __\ \ / / _ \ '_ \| __/ __|
+ | |   | | |____  | |___\ V /  __/ | | | |_\__ \
+ |_|   |_|______| |______\_/ \___|_| |_|\__|___/
+                                                
+                By Loudbook
+                
+        """.trimIndent())
+        println(" ---------------------------------------- ")
     }
 }
