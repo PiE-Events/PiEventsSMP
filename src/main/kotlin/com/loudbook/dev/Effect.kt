@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
 enum class Effect(val effect: PotionEffect, val formattedName: String, val description: String, val material: Material, val color: ChatColor) {
-    SPEED(PotionEffect(PotionEffectType.SPEED, Int.MAX_VALUE, 2, true, true), "Speed",
+    SPEED(PotionEffect(PotionEffectType.SPEED, Int.MAX_VALUE, 2, true, true), ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Speed" + ChatColor.RESET,
         "Increases your speed!", Material.SUGAR, ChatColor.AQUA),
     JUMP(PotionEffect(PotionEffectType.JUMP, Int.MAX_VALUE, 2, true, true), "Jump",
         "Increases your jump height!", Material.FEATHER, ChatColor.AQUA);
