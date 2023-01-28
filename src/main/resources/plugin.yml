@@ -1,0 +1,32 @@
+main: com.loudbook.dev.PiEvents
+name: PiEvents
+author: Loudbook
+version: 1.0
+api-version: 1.19
+libraries:
+  - 'com.google.firebase:firebase-admin:9.1.1'
+  - 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21'
+
+commands:
+  giveeffect:
+    description: Gives a potion to a player
+    usage: /givepotion <potion> <player>
+    aliases: [ge]
+  accept:
+    description: Accepts a potion effect
+    usage: /accept
+    aliases: [a]
+  removeeffect:
+    description: Removes a potion effect
+    usage: /removeeffect <player> <effect>
+    aliases: [re]
+    permission: bukkit.command.stop
+  addeffect:
+    description: Adds a potion effect
+    usage: /addeffect <player> <effect>
+    aliases: [ae]
+    permission: bukkit.command.stop
+  vault:
+    description: Opens your vault!
+    usage: /vault
+    aliases: [v]
