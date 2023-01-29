@@ -26,6 +26,7 @@ class PiEvents : JavaPlugin() {
         Bukkit.getPluginCommand("addeffect")!!.tabCompleter = AddEffectTabComplete()
         Bukkit.getPluginCommand("accept")!!.setExecutor(AcceptCommand(playerManager))
         Bukkit.getPluginCommand("vault")!!.setExecutor(VaultCommand(playerManager))
+        Bukkit.getPluginCommand("toggleinvis")!!.setExecutor(Invisible(playerManager))
 
         Bukkit.getPluginManager().registerEvents(VaultHandler(playerManager, firestore), this)
         Bukkit.getPluginManager().registerEvents(DeathHandler(playerManager, this), this)

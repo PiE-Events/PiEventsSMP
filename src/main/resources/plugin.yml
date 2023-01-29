@@ -30,3 +30,7 @@ commands:
     description: Opens your vault!
     usage: /vault
     aliases: [v]
+  toggleinvis:
+    description: Toggles invisibility
+    usage: /toggleinvis
+    aliases: [ti]

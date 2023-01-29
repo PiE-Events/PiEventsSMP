@@ -10,6 +10,8 @@ class PiPlayer(val player: Player, private val firestore: Firestore) {
     var effects: MutableList<Effect> = ArrayList()
     val vault: Vault = Vault(this, firestore)
 
+    var wantsInvis: Boolean = true
+
     var lastDamaged: PiPlayer? = null
 
     fun hasEffect(effect: Effect): Boolean {
