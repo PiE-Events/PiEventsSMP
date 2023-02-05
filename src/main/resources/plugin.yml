@@ -6,6 +6,7 @@ api-version: 1.19
 libraries:
   - 'com.google.firebase:firebase-admin:9.1.1'
   - 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21'
+  - 'org.redisson:redisson-all:3.19.2'
 
 commands:
   giveeffect:

@@ -8,27 +8,33 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
 enum class Effect(val effect: PotionEffect, val formattedName: String, val description: String, val material: Material, val color: ChatColor) {
-    SPEED(PotionEffect(PotionEffectType.SPEED, Int.MAX_VALUE, 2, true, true), ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Speed" + ChatColor.RESET,
+    SPEED(PotionEffect(PotionEffectType.SPEED, 30, 0, true, true),"Speed",
         "Increases your speed!", Material.SUGAR, ChatColor.AQUA),
-    JUMP(PotionEffect(PotionEffectType.JUMP, Int.MAX_VALUE, 2, true, true), "Jump",
+    JUMP(PotionEffect(PotionEffectType.JUMP, 30, 2, true, true), "Jump",
         "Increases your jump height!", Material.FEATHER, ChatColor.AQUA),
-    STRENGTH(PotionEffect(PotionEffectType.INCREASE_DAMAGE, Int.MAX_VALUE, 2, true, true), "Strength",
+    STRENGTH(PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30, 2, true, true), "Strength",
         "Increases your damage!", Material.IRON_SWORD, ChatColor.RED),
-    REGENERATION(PotionEffect(PotionEffectType.REGENERATION, Int.MAX_VALUE, 1, true, true), "Regeneration",
+    REGENERATION(PotionEffect(PotionEffectType.REGENERATION, 30, 1, true, true), "Regeneration",
         "Regenerates your health!", Material.GOLDEN_APPLE, ChatColor.GREEN),
-    NIGHT_VISION(PotionEffect(PotionEffectType.NIGHT_VISION, Int.MAX_VALUE, 0, true, true), "Night Vision",
+    NIGHT_VISION(PotionEffect(PotionEffectType.NIGHT_VISION, 30, 0, true, true), "Night Vision",
         "Allows you to see in the dark!", Material.GLOWSTONE_DUST, ChatColor.DARK_PURPLE),
-    INVISIBILITY(PotionEffect(PotionEffectType.INVISIBILITY, Int.MAX_VALUE, 0, true, true), "Invisibility",
+    INVISIBILITY(PotionEffect(PotionEffectType.INVISIBILITY, 30, 0, true, true), "Invisibility",
         "Makes you invisible!", Material.INK_SAC, ChatColor.DARK_PURPLE),
-    WATER_BREATHING(PotionEffect(PotionEffectType.WATER_BREATHING, Int.MAX_VALUE, 0, true, true), "Water Breathing",
+    WATER_BREATHING(PotionEffect(PotionEffectType.WATER_BREATHING, 30, 0, true, true), "Water Breathing",
         "Allows you to breathe underwater!", Material.POTION, ChatColor.DARK_PURPLE),
-    FIRE_RESISTANCE(PotionEffect(PotionEffectType.FIRE_RESISTANCE, Int.MAX_VALUE, 0, true, true), "Fire Resistance",
-        "Makes you immune to fire!", Material.BLAZE_POWDER, ChatColor.DARK_PURPLE);
+    FIRE_RESISTANCE(PotionEffect(PotionEffectType.FIRE_RESISTANCE, 30, 0, true, true), "Fire Resistance",
+        "Makes you immune to fire!", Material.BLAZE_POWDER, ChatColor.DARK_PURPLE),
+    CONDUIT_POWER(PotionEffect(PotionEffectType.CONDUIT_POWER, 30, 0, true, true), "Conduit Power",
+        "Gives you conduit power!", Material.PRISMARINE_CRYSTALS, ChatColor.DARK_PURPLE),
+    HEALTH_BOOST(PotionEffect(PotionEffectType.HEALTH_BOOST, 30, 1, true, true), "Health Boost",
+        "Increases your max health!", Material.GOLDEN_APPLE, ChatColor.GREEN),
+    HASTE(PotionEffect(PotionEffectType.FAST_DIGGING, 30, 1, true, true), "Haste",
+        "Increases your mining speed!", Material.DIAMOND_PICKAXE, ChatColor.GOLD);
 
     companion object {
-        fun getFromTab(tabComplete: String?): Effect? {
+        fun getFromTab(tabComplete: String): Effect? {
             for (value in Effect.values()) {
-                if (value.formattedName.equals(tabComplete, true)) {
+                if (value.formattedName.equals(tabComplete.replace("_", " "), true)) {
                     return value
                 }
             }

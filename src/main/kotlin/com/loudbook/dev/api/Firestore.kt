@@ -7,6 +7,7 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.cloud.FirestoreClient
 import com.loudbook.dev.Effect
 import com.loudbook.dev.PiPlayer
+import org.bukkit.ChatColor
 import java.io.FileInputStream
 import java.util.*
 import kotlin.collections.ArrayList
@@ -29,7 +30,7 @@ class Firestore {
     fun putEffects(id: UUID, list: ArrayList<Effect>){
         val newList = ArrayList<String>()
         for (effect in list){
-            newList.add(effect.formattedName)
+            newList.add(ChatColor.stripColor(effect.formattedName)!!)
         }
         db.collection("userdata").document(id.toString()).update(mapOf("effects" to newList))
     }
@@ -37,7 +38,7 @@ class Firestore {
     fun updateEffects(player: PiPlayer) {
         val list = ArrayList<String>()
         for (effect in player.effects) {
-            list.add(effect.formattedName)
+            list.add(ChatColor.stripColor(effect.formattedName)!!)
         }
         db.collection("userdata").document(player.player.uniqueId.toString()).update(mapOf("effects" to list))
     }
@@ -59,7 +60,7 @@ class Firestore {
     fun putVault(id: UUID, list: ArrayList<Effect>){
         val newList = ArrayList<String>()
         for (effect in list){
-            newList.add(effect.formattedName)
+            newList.add(ChatColor.stripColor(effect.formattedName)!!)
         }
         db.collection("userdata").document(id.toString()).update(mapOf("effects" to newList))
     }
@@ -67,7 +68,7 @@ class Firestore {
     fun pushVault(player: PiPlayer) {
         val list = ArrayList<String>()
         for (effect in player.vault.effects) {
-            list.add(effect.formattedName)
+            list.add(ChatColor.stripColor(effect.formattedName)!!)
         }
         db.collection("userdata").document(player.player.uniqueId.toString()).update(mapOf("vault" to list))
     }

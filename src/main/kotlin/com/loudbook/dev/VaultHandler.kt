@@ -17,7 +17,7 @@ class VaultHandler(private val playerManager: PlayerManager, private val firesto
             e.isCancelled = true
             if (e.currentItem!!.itemMeta == null) return
 
-            val effect = Effect.getFromTab(ChatColor.stripColor(e.currentItem!!.itemMeta!!.displayName))
+            val effect = Effect.getFromTab(ChatColor.stripColor(e.currentItem!!.itemMeta!!.displayName)!!)
             if (effect == null) {
                 piPlayer.player.sendMessage(ChatColor.RED.toString() + "An error occurred while trying to equip this effect!")
                 return

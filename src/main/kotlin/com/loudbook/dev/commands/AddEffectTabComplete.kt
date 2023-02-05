@@ -17,7 +17,7 @@ class AddEffectTabComplete : TabCompleter {
         if (args.size == 2) {
             val effectNames: MutableList<String> = ArrayList()
             for (value in Effect.values()) {
-                effectNames.add(value.formattedName)
+                effectNames.add(value.formattedName.replace(" ", "_"))
             }
             return effectNames
         }

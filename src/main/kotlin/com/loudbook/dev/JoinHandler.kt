@@ -6,7 +6,6 @@ import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
-import java.util.List
 
 class JoinHandler(private val playerManager: PlayerManager, private val firestore: Firestore) : Listener {
     @EventHandler
@@ -15,8 +14,7 @@ class JoinHandler(private val playerManager: PlayerManager, private val firestor
         this.firestore.getEffects(player)
         this.firestore.getVault(player)
         if (!e.player.hasPlayedBefore()) {
-
-            val randomPotion: Effect = ListUtil.randomListElement(ArrayList<Any?>(listOf(Effect.values()))) as Effect
+            val randomPotion: Effect = getArrayList().random()
             e.player.sendTitle(
                 randomPotion.formattedName,
                 ChatColor.GOLD.toString() + "Your random potion has been selected!",
@@ -26,5 +24,12 @@ class JoinHandler(private val playerManager: PlayerManager, private val firestor
             )
             player.addEffect(randomPotion)
         }
+    }
+    private fun getArrayList(): ArrayList<Effect> {
+        val list: ArrayList<Effect> = ArrayList()
+        for (value in Effect.values()) {
+            list.add(value)
+        }
+        return list
     }
 }

@@ -26,7 +26,7 @@ class RemoveEffectTabComplete(private val playerManager: PlayerManager) : TabCom
             val effects: List<Effect> = player.effects
             val potionNames: MutableList<String> = ArrayList()
             for (effect in effects) {
-                potionNames.add(effect.formattedName)
+                potionNames.add(effect.formattedName.replace(" ", "_"))
             }
             return potionNames
         }

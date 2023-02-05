@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin
 @Suppress("unused")
 class PiEvents : JavaPlugin() {
     private val plugin: Plugin = this
+    private var redisson: Redisson? = null
     override fun onEnable() {
         val firestore = Firestore()
         firestore.connect()
@@ -17,6 +18,9 @@ class PiEvents : JavaPlugin() {
         println(" ---------------------------------------- ")
         val playerManager = PlayerManager(firestore)
         UpdatePotionTask(playerManager, plugin)
+
+        this.redisson = Redisson()
+        this.redisson!!.connect()
 
         Bukkit.getPluginCommand("giveeffect")!!.setExecutor(GiveEffectCommand(playerManager, this))
         Bukkit.getPluginCommand("giveeffect")!!.tabCompleter = GiveEffectTabComplete(playerManager)
@@ -28,10 +32,14 @@ class PiEvents : JavaPlugin() {
         Bukkit.getPluginCommand("vault")!!.setExecutor(VaultCommand(playerManager))
         Bukkit.getPluginCommand("toggleinvis")!!.setExecutor(Invisible(playerManager))
 
+        Bukkit.getPluginManager().registerEvents(RedisHandler(redisson!!), this)
         Bukkit.getPluginManager().registerEvents(VaultHandler(playerManager, firestore), this)
         Bukkit.getPluginManager().registerEvents(DeathHandler(playerManager, this), this)
         Bukkit.getPluginManager().registerEvents(JoinHandler(playerManager, firestore), this)
         Bukkit.getPluginManager().registerEvents(LeaveHandler(playerManager), this)
+
+
+
 
         println("""
             
@@ -46,5 +54,9 @@ class PiEvents : JavaPlugin() {
                 
         """.trimIndent())
         println(" ---------------------------------------- ")
+    }
+
+    override fun onDisable() {
+        this.redisson!!.redisson!!.shutdown()
     }
 }

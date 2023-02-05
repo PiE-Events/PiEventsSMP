@@ -19,7 +19,7 @@ class GiveEffectCommand(private val playerManager: PlayerManager, private val pl
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (command.name != "giveeffect") return true
-        if (Effect.getFromTab(args[0]) != null) {
+        if (Effect.getFromTab(args[0]) != null && args.size == 2) {
             val onlinePlayers: List<Player> = ArrayList(Bukkit.getOnlinePlayers())
             val names: MutableList<String?> = ArrayList()
             for (onlinePlayer in onlinePlayers) {
