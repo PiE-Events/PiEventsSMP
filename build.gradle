@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
-group = 'com.loudbook'
+group = 'com.loudbook.dev'
 version = '1.0'
 
 repositories {
@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
-    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.19.4-R0.1-SNAPSHOT'
     compileOnly 'com.google.firebase:firebase-admin:9.1.1'
     compileOnly 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21'
     compileOnly 'org.redisson:redisson-all:3.19.2'

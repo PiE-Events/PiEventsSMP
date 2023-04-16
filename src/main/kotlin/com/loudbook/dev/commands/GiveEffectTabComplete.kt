@@ -24,7 +24,7 @@ class GiveEffectTabComplete(private val playerManager: PlayerManager) : TabCompl
             val potionNames: MutableList<String> = ArrayList()
             for (potion in potions) {
                 if (potionNames.contains(potion.formattedName)) continue
-                potionNames.add(potion.formattedName)
+                potionNames.add(potion.formattedName.replace(" ", "_"))
             }
             return potionNames
         }

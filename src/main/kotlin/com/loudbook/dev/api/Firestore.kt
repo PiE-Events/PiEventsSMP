@@ -23,8 +23,6 @@ class Firestore {
             .build()
         FirebaseApp.initializeApp(options)
         this.db = FirestoreClient.getFirestore()
-
-
     }
 
     fun putEffects(id: UUID, list: ArrayList<Effect>){
@@ -40,7 +38,11 @@ class Firestore {
         for (effect in player.effects) {
             list.add(ChatColor.stripColor(effect.formattedName)!!)
         }
-        db.collection("userdata").document(player.player.uniqueId.toString()).update(mapOf("effects" to list))
+        if (db.collection("userdata").document(player.player.uniqueId.toString()).get().get() != null) {
+            db.collection("userdata").document(player.player.uniqueId.toString()).update(mapOf("effects" to list))
+        } else {
+            db.collection("userdata").document(player.player.uniqueId.toString()).set(mapOf("effects" to list))
+        }
     }
 
     fun getEffects(player: PiPlayer): ArrayList<Effect> {
@@ -50,7 +52,7 @@ class Firestore {
         val effects = doc.get("effects") as ArrayList<*>
 
         for (effect in effects) {
-            list.add(Effect.valueOf((effect as String).uppercase()))
+            list.add(Effect.valueOf((effect as String).uppercase().replace(" ", "_")))
         }
         player.effects = list
 
@@ -82,9 +84,9 @@ class Firestore {
         val effects = doc.get("vault") as ArrayList<*>
 
         for (effect in effects) {
-            list.add(Effect.valueOf((effect as String).uppercase()))
-            if (!piPlayer.vault.effects.contains(Effect.valueOf(effect.uppercase()))) {
-                piPlayer.vault.add(Effect.valueOf(effect.uppercase()))
+            list.add(Effect.valueOf((effect as String).uppercase().replace(" ", "_")))
+            if (!piPlayer.vault.effects.contains(Effect.valueOf(effect.uppercase().replace(" ", "_")))) {
+                piPlayer.vault.add(Effect.valueOf(effect.uppercase().replace(" ", "_")))
             }
         }
 

@@ -19,9 +19,6 @@ class PiEvents : JavaPlugin() {
         val playerManager = PlayerManager(firestore)
         UpdatePotionTask(playerManager, plugin)
 
-        this.redisson = Redisson()
-        this.redisson!!.connect()
-
         Bukkit.getPluginCommand("giveeffect")!!.setExecutor(GiveEffectCommand(playerManager, this))
         Bukkit.getPluginCommand("giveeffect")!!.tabCompleter = GiveEffectTabComplete(playerManager)
         Bukkit.getPluginCommand("removeeffect")!!.setExecutor(RemoveEffectCommand(playerManager, firestore))
@@ -31,6 +28,9 @@ class PiEvents : JavaPlugin() {
         Bukkit.getPluginCommand("accept")!!.setExecutor(AcceptCommand(playerManager))
         Bukkit.getPluginCommand("vault")!!.setExecutor(VaultCommand(playerManager))
         Bukkit.getPluginCommand("toggleinvis")!!.setExecutor(Invisible(playerManager))
+
+        this.redisson = Redisson()
+        this.redisson!!.connect()
 
         Bukkit.getPluginManager().registerEvents(RedisHandler(redisson!!), this)
         Bukkit.getPluginManager().registerEvents(VaultHandler(playerManager, firestore), this)

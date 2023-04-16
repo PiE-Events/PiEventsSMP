@@ -7,7 +7,7 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.util.*
 
-class Redisson() {
+class Redisson {
     var redisson: RedissonClient? = null
     private var uri: String? = null
     fun connect() {
